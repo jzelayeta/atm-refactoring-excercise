@@ -1,3 +1,5 @@
+package model
+
 import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
 
@@ -25,21 +27,21 @@ class Roulette {
         .map(_._2)
         .filter(_.isWinner(winningNumber))
 
-      for (bet <- betsByPlayer) {
-        val payOut = payOutTable(bet)
-        val winningAmount = if (payOut == null) {
-         0
-        } else payOut * bet.amount
-
-        responsePayOutByPlayer = responsePayOutByPlayer :+ winningAmount
+      var winningAcc = BigDecimal(0)
+      for (winningBet <- betsByPlayer) {
+        val payout = payOutTable(winningBet)
+        val winningAmount = if (payout == null) BigDecimal(0) else payout * winningBet.amount
+        winningAcc = winningAcc + winningAmount
       }
+      responsePayOutByPlayer = responsePayOutByPlayer :+ player -> winningAcc
     }
-    bets.clear()
-    responsePayOutByPlayer
+    bets.clear()  // remove all placed bets after paying out
+    responsePayOutByPlayer.distinct // this is to avoid possible duplicate answers
   }
 
+
   def registerBet(bet: Bet, player: Player): Roulette = {
-    bets.addOne(player, bet)
+    bets.addOne(player -> bet)
     this
   }
 }

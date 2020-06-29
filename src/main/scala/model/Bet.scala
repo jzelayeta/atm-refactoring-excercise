@@ -1,3 +1,5 @@
+package model
+
 abstract class  Bet(val amount: BigDecimal, val numbers: Int*) {
   def isWinner(number: Int): Boolean = numbers.contains(number)
   def name: String
