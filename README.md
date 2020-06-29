@@ -1,4 +1,4 @@
-# Roulette Model Implentation
+# Roulette Model Implementation
 
 * A player can place multiple bets on a single roulette hand.
 * Supported bets are the following: 
