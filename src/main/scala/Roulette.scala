@@ -4,7 +4,7 @@ import scala.util.Random
 class Roulette {
   private val bets = ArrayBuffer.empty[(Player, Bet)]
 
-  private val payOutTable: Bet => Int = (bet: Bet) =>
+  private val payOutTable: Bet => BigDecimal = (bet: Bet) =>
     if (bet.name == "Straight") 36
     else if (bet.name == "Split") 18
     else if (bet.name == "Street") 12
@@ -26,7 +26,12 @@ class Roulette {
         .filter(_.isWinner(winningNumber))
 
       for (bet <- betsByPlayer) {
-        responsePayOutByPlayer = responsePayOutByPlayer :+ payOutTable(bet) * bet.amount
+        val payOut = payOutTable(bet)
+        val winningAmount = if (payOut == null) {
+         0
+        } else payOut * bet.amount
+
+        responsePayOutByPlayer = responsePayOutByPlayer :+ winningAmount
       }
     }
     bets.clear()
