@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/atm-refactoring-excercise.iml" filepath="$PROJECT_DIR$/.idea/modules/atm-refactoring-excercise.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/atm-refactoring-excercise-build.iml" filepath="$PROJECT_DIR$/.idea/modules/atm-refactoring-excercise-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tn-pr-test.atm-refactoring-excercise.iml" filepath="$PROJECT_DIR$/.idea/modules/tn-pr-test.atm-refactoring-excercise.iml" />
     </modules>
   </component>
 </project>
